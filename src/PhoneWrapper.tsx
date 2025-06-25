@@ -38,7 +38,9 @@ const PhoneWrapper: React.FC<PhoneWrapperProps> = ({ children }) => {
             id="phone"
             className="PhoneScreen bg-neutral-100 dark:bg-neutral-900"
             style={{
-              backgroundImage: pathname === '/' && wallpaper,
+              backgroundImage: 'url(https://wallpapercat.com/w/full/1/b/b/130298-1080x1920-phone-1080p-grand-theft-auto-5-background-photo.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
           >
             {children}

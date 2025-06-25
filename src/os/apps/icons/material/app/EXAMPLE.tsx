@@ -1,6 +1,12 @@
 import React from 'react';
-import { Help } from '@mui/icons-material';
 
-const ExampleIcon: React.FC = () => <Help fontSize="large" />;
+
+const ExampleIcon: React.FC = () => (
+    <img
+        src="https://cdn.prodigyrp.net/phone/apps/news.webp"
+        alt="Example"
+        style={{ width: '100%', height: '100%', display: 'block', border: 'none', background: 'transparent', boxShadow: 'none' }}
+    />
+)
 
 export default ExampleIcon;

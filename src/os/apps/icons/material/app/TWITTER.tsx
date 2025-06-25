@@ -1,8 +1,11 @@
 import React from 'react';
-import { Bird } from 'lucide-react';
 
 const TwitterIcon: React.FC = () => (
-  <Bird size={30} />
+  <img
+    src="https://cdn.prodigyrp.net/phone/apps/twitter.webp"
+    alt="Twitter"
+    style={{ width: '100%', height: '100%', display: 'block', border: 'none', background: 'transparent', boxShadow: 'none' }}
+  />
 );
 
 export default TwitterIcon;

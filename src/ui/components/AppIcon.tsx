@@ -15,19 +15,15 @@ const useStyles = makeStyles<Theme, { color: string; backgroundColor: string }>(
   },
   avatar: {
     '&:hover': {
-      background: ({ backgroundColor }) => {
-        return `linear-gradient(45deg, ${darken(backgroundColor, 0.25)} 10%, ${backgroundColor} 90%)`;
-      },
+      background: 'transparent',
     },
-    background: ({ backgroundColor }) => {
-      return `linear-gradient(45deg, ${darken(backgroundColor, 0.2)} 20%, ${backgroundColor} 90%)`;
-    },
+    background: 'transparent',
     color: ({ color }) => color,
-    boxShadow: theme.shadows[2],
+    boxShadow: 'none',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 18,
+    borderRadius: 0,
     width: theme.spacing(8),
     height: theme.spacing(8),
     fontSize: theme.typography.h4.fontSize,
