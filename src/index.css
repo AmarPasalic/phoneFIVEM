@@ -1,0 +1,3 @@
+ul, li, .rounded-xl, .rounded-lg, .rounded, .MuiPaper-rounded, .MuiList-root, .MuiListItem-root, .MuiListItem-gutters, .MuiPaper-root {
+  border-radius: 0 !important;
+} 

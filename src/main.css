@@ -6,12 +6,12 @@
 
 body {
   font-family: 'Geist Variable', sans-serif;
-    font-size: 20px;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 code {
@@ -22,5 +22,18 @@ a,
 a:visited,
 a:hover,
 a:active {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+ul,
+li,
+.rounded-xl,
+.rounded-lg,
+.rounded,
+.MuiPaper-rounded,
+.MuiList-root,
+.MuiListItem-root,
+.MuiListItem-gutters,
+.MuiPaper-root {
+  border-radius: 0 !important;
 }
