@@ -6,7 +6,7 @@ const MarketplacePlayground = () => {
   return (
 
     <div className="container1">
-         <style>
+      <style>
         {`
           .container1 {
             background: #222220;
@@ -72,24 +72,24 @@ const MarketplacePlayground = () => {
           
         `}
       </style>
-        <div className="title">
-          <h1>&lt;</h1>
-          <h1>App Store </h1>
-        </div>
-        <div className="search">
-          <input type='search' placeholder='Search for app....' />
-          <div className="searchIcon"><Search size={20} /></div>
-        </div>
-        <div className="apps">
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/bank.webp' txt='Bank' isDownloaded />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/calculator.webp' txt='Calculator' isDownloaded={false} />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/calendar.webp' txt='Calendar' isDownloaded={false} />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/callcenter.webp' txt='Call Center' isDownloaded />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/camera.webp' txt='Camer' isDownloaded />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/companybrowser.png' txt='CompanyBrowser' isDownloaded />
-          <MarketApp img='https://cdn.prodigyrp.net/phone/apps/comanager.webp' txt='Company Menager' isDownloaded />
-        </div>
+      <div className="title">
+        <h1>&lt;</h1>
+        <h1>App Store </h1>
       </div>
+      <div className="search">
+        <input type='search' placeholder='Search for app....' />
+        <div className="searchIcon"><Search size={20} /></div>
+      </div>
+      <div className="apps">
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/bank.webp' txt='Bank' isDownloaded />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/calculator.webp' txt='Calculator' isDownloaded={false} />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/calendar.webp' txt='Calendar' isDownloaded={false} />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/callcenter.webp' txt='Call Center' isDownloaded />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/camera.webp' txt='Camer' isDownloaded />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/companybrowser.png' txt='CompanyBrowser' isDownloaded />
+        <MarketApp img='https://cdn.prodigyrp.net/phone/apps/comanager.webp' txt='Company Menager' isDownloaded />
+      </div>
+    </div>
 
 
 

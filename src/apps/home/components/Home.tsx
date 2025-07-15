@@ -8,10 +8,22 @@ import { useExternalApps } from '@common/hooks/useExternalApps';
 export const HomeApp: React.FC = () => {
   const { apps } = useApps();
   const externalApps = useExternalApps();
+
+  // Debug output
+  console.log("Main apps:", apps.map(a => a.id));
+  console.log("External apps:", externalApps.map(a => a.id));
+
+  // Filter out external apps with duplicate IDs
+  // Combine all apps, but only keep the first occurrence of each ID
+  const combinedApps = [...apps, ...externalApps];
+  const uniqueApps = combinedApps.filter((app, idx, arr) =>
+    arr.findIndex(a => a.id === app.id) === idx
+  );
+
   return (
     <AppWrapper>
       <Box component="div" mt={6} px={1}>
-        {apps && <GridMenu xs={3} items={[...apps, ...externalApps]} />}
+        {uniqueApps && <GridMenu xs={3} items={uniqueApps} />}
       </Box>
 
       {/*<div className="absolute bottom-5 left-8 right-8">

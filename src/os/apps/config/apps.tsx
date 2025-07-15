@@ -55,6 +55,8 @@ import MarketplaceIcon from '../icons/material/app/MARKETPLACE';
 import NotesIcon from '../icons/material/app/NOTES';
 import Camera from '../icons/material/app/CAMERA';
 import ExampleIcon from '../icons/material/app/EXAMPLE';
+import { BankApp } from '@apps/bank/components/BankApp';
+import BankIcon from '../icons/material/app/BANK';
 
 export interface IAppConfig {
   id: string;
@@ -140,6 +142,17 @@ export const APPS: IAppConfig[] = [
     path: '/calculator',
     Route: () => (
       <AppRoute id="CALCULATOR" path="/calculator" component={CalculatorApp} emitOnOpen={false} />
+    ),
+  },
+  {
+    id: 'BANK',
+    nameLocale: 'APPS_BANK',
+    icon: <BankIcon />,
+    backgroundColor: '#2b3465',
+    color: '#fff',
+    path: '/bank',
+    Route: () => (
+      <AppRoute id="BANK" path="/bank" component={BankApp} emitOnOpen={false} />
     ),
   },
   {

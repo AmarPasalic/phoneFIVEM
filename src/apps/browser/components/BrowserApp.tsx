@@ -59,6 +59,7 @@ const browserReducer: Reducer<BrowserState, ReducerAction> = (state, action) => 
 };
 
 export const BrowserApp: React.FC = () => {
+  console.log("Rendering BrowserApp");
   const [{ appSettings }] = usePhoneConfig();
   const { ResourceConfig } = usePhone();
 
