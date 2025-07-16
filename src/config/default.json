@@ -258,6 +258,9 @@
   "appSettings": {
     "browserHomePage": "https://docs.projecterror.dev"
   },
+  "browser": {
+    "homepageUrl": "https://docs.projecterror.dev"
+  },
   "iconSet": [
     {
       "label": "NPWD Icons",

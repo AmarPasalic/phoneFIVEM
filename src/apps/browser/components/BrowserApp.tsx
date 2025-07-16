@@ -1,131 +1,68 @@
-import { AppWrapper } from '@ui/components';
-import { styled } from '@mui/material/styles';
-import React, {Reducer, useEffect, useReducer, useRef} from 'react';
-import { AppContent } from '@ui/components/AppContent';
-import { Box } from '@mui/material';
-import { BrowserURLBar } from './BrowserURLBar';
-import { promiseTimeout } from '../../../utils/promiseTimeout';
-import { usePhoneConfig } from '../../../config/hooks/usePhoneConfig';
-import {useConfig, usePhone} from "@os/phone/hooks";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import BrowserRow from './BrowserRow';
+const Blank = () => {
+  return (
+    <div className="container1">
+      <style>{`
+        .container1 {
+          background: #010101;
+          height:100%;
+          width:100%;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+        }
+        .title{
+          padding-left:10px;
+          width:100%;
+          display:flex;
+          align-items:center;
+          gap:10px;
+          height:7vh;
+          background:#111111;
+          border-bottom:1px solid #242424;
+        }
 
-const PREFIX = 'BrowserApp';
-
-const classes = {
-  iframe: `${PREFIX}-iframe`,
-  root: `${PREFIX}-root`,
-};
-
-const StyledAppWrapper = styled(AppWrapper)(() => ({
-  [`& .${classes.iframe}`]: {
-    height: '100%',
-    width: '100%',
-    zoom: 0.5,
-    border: 'none',
-  },
-
-  [`& .${classes.root}`]: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-}));
-
-interface BrowserState {
-  browserUrl: string;
-  browserHistory: string[];
-}
-
-interface ReducerAction {
-  payload: any;
-  type: ReducerActionsType;
-}
-
-enum ReducerActionsType {
-  SET_URL,
-  ADD_HISTORY,
-  RELOAD,
-}
-
-const browserReducer: Reducer<BrowserState, ReducerAction> = (state, action) => {
-  switch (action.type) {
-    case ReducerActionsType.ADD_HISTORY:
-      if (action.payload === 'about:blank') return state;
-      return { ...state, browserHistory: state.browserHistory.concat(action.payload) };
-    case ReducerActionsType.SET_URL:
-      return { ...state, browserUrl: action.payload };
-    default:
-      throw new Error('Invalid reducer action type');
-  }
+        h1,h2,h3,h4,h5,h6,p{
+        color:white;
+        }
+        .header{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding-top:20px;
+        padding-bottom:20px;
+        font-size:28px;
+        }
+       .content{
+       width:90%;
+       display:flex;
+       flex-direction:column;
+       align-items:center;
+       }
+      `}</style>
+      <div className="title">
+        <h1>&lt;</h1>
+        <h2>Company Browser</h2>
+      </div>
+      <div className="header">
+        <h1>Currently Open</h1>
+      </div>
+      <div className="content">
+       <BrowserRow title='Farmer Markets' />
+       <BrowserRow title='Premium Deluxe Motorsport' paragraph='LS Premium Car Dealership'/>
+      </div>
+   
+    </div>
+  )
 };
 
 export const BrowserApp: React.FC = () => {
-  console.log("Rendering BrowserApp");
-  const [{ appSettings }] = usePhoneConfig();
-  const { ResourceConfig } = usePhone();
-
-  const [browserState, dispatch] = useReducer(browserReducer, {
-    browserUrl: ResourceConfig.browser.homepageUrl ?? "",
-    browserHistory: [ResourceConfig.browser.homepageUrl ?? ""],
-  });
-
-  const { browserHistory, browserUrl } = browserState;
-
-  const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  const _setBrowserUrl = (newUrl: string) => {
-    const formattedUrl = newUrl.match(/^(http|https):\/\//) ? newUrl : 'https://' + newUrl;
-    dispatch({ payload: browserUrl, type: ReducerActionsType.ADD_HISTORY });
-    dispatch({ payload: formattedUrl, type: ReducerActionsType.SET_URL });
-  };
-
-  const handleGoBack = () => {
-    if (browserHistory.length <= 1) return;
-    // Get last page from history
-    const lastPage = browserHistory[browserHistory.length - 1];
-
-    // Bail if last page is same as current
-    if (lastPage === browserUrl) return;
-    _setBrowserUrl(lastPage);
-  };
-
-  const reloadPage = async () => {
-    const strCopy = browserUrl.slice();
-    dispatch({ payload: 'about:blank', type: ReducerActionsType.SET_URL });
-    await promiseTimeout(100);
-    dispatch({ payload: strCopy, type: ReducerActionsType.SET_URL });
-  };
-
-  useEffect(() => {
-    if (ResourceConfig.browser.homepageUrl) {
-      _setBrowserUrl(ResourceConfig.browser.homepageUrl)
-    }
-  }, [ResourceConfig.browser.homepageUrl]);
-
   return (
-    <StyledAppWrapper id="browser">
-      <AppContent className={classes.root}>
-        <BrowserURLBar
-          browserUrl={browserUrl}
-          browserHasHistory={browserHistory.length > 1}
-          setBrowser={_setBrowserUrl}
-          goBack={handleGoBack}
-          reloadPage={reloadPage}
-        />
-        <Box flexGrow={1}>
-          <iframe
-            is="x-frame-bypass"
-            src={browserUrl}
-            // @ts-ignore
-            className={classes.iframe}
-            style={{
-              height: '100%',
-              width: '100%',
-              border: 'none',
-            }}
-            title="npwd-browser"
-            ref={iframeRef}
-          />
-        </Box>
-      </AppContent>
-    </StyledAppWrapper>
+    <Switch>
+      <Route path="/browser" exact component={Blank} />
+    </Switch>
   );
 };

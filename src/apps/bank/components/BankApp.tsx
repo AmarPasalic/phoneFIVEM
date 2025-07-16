@@ -13,6 +13,7 @@ const Blank = () => {
             display:flex;
             flex-direction:column;
             align-items:center;
+            gap:20px;
           }
           .title{
             padding-left:10px;
@@ -116,6 +117,23 @@ const Blank = () => {
           align-items:center;
           gap:5px;
           }
+          .detailsContainer{
+          width:90%;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          border:2px solid  #474747;
+          background:#232325;
+          border-radius:5px;
+          }
+          .detailsWrapper{
+          width:90%;
+          padding:15px;
+          display:flex;
+          flex-direction:column;
+          align-items:flex-start;
+          }
+
 
         `}</style>
             <div className="title">
@@ -143,18 +161,20 @@ const Blank = () => {
                         <div className="balanceButton">
                             <p>change in last 7 days </p>
                             <div className="balanceIcon">
-                            <img src="/media/banknote.png" alt='Banknote' />
-                            <h6>$+9,984</h6>
+                                <img src="/media/banknote.png" alt='Banknote' />
+                                <h6>$+9,984</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="details">
-                <BankRow title='NAME' txt='741660' />
-                <BankRow title='BANK NUMBER' txt='741660' />
-                <BankRow title='ACCOUNT TYPE' txt='CURRENT ACCOUNT' />
-                <BankRow title='BALANCE' txt='$10,734' />
+            <div className="detailsContainer">
+                <div className="detailsWrapper">
+                    <BankRow title='NAME' txt='741660' />
+                    <BankRow title='BANK NUMBER' txt='741660' />
+                    <BankRow title='ACCOUNT TYPE' txt='CURRENT ACCOUNT' />
+                    <BankRow title='BALANCE' txt='$10,734' />
+                </div>
             </div>
         </div>
     );
