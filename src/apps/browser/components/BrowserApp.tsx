@@ -41,6 +41,15 @@ const Blank = () => {
        display:flex;
        flex-direction:column;
        align-items:center;
+       gap:15px;
+       flex: 1;
+       overflow-y: auto;
+       /* Hide scrollbar for Webkit browsers */
+       scrollbar-width: none; /* Firefox */
+       -ms-overflow-style: none;  /* IE and Edge */
+       }
+       .content::-webkit-scrollbar {
+         display: none;
        }
       `}</style>
       <div className="title">
@@ -51,10 +60,10 @@ const Blank = () => {
         <h1>Currently Open</h1>
       </div>
       <div className="content">
-       <BrowserRow title='Farmer Markets' />
-       <BrowserRow title='Premium Deluxe Motorsport' paragraph='LS Premium Car Dealership'/>
+        <BrowserRow title='Farmer Markets' />
+        <BrowserRow title='Premium Deluxe Motorsport' paragraph='LS Premium Car Dealership' />
       </div>
-   
+
     </div>
   )
 };
