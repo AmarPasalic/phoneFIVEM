@@ -1,0 +1,1 @@
+// Blank list component for crypto workspace 

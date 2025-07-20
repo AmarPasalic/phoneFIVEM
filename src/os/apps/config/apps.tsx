@@ -43,6 +43,7 @@ import {
 } from '@apps/darkchat/darkchat.theme';
 import DarkChatApp from '../../../apps/darkchat/DarkChatApp';
 import DialerAppIcon from '../icons/material/app/DIALER';
+import PhoneIcon from '../icons/material/app/PHONE';
 import BrowserIcon from '../icons/material/app/BROWSER';
 import MessagesIcon from '../icons/material/app/MESSAGES';
 import DarkchatIcon from '../icons/material/app/DARKCHAT';
@@ -57,6 +58,12 @@ import Camera from '../icons/material/app/CAMERA';
 import ExampleIcon from '../icons/material/app/EXAMPLE';
 import { BankApp } from '@apps/bank/components/BankApp';
 import BankIcon from '../icons/material/app/BANK';
+import { CryptoAppWrapper } from '@apps/crypto/components/CryptoAppWrapper';
+import CryptoIcon from '../icons/material/app/CRYPTO';
+import { NewsAppWrapper } from '@apps/news/NewsAppWrapper';
+import NewsIcon from '../icons/material/app/NEWS';
+import { CallCenterAppWrapper } from '@apps/callcenter/CallCenterAppWrapper';
+import CallCenterIcon from '../icons/material/app/CALLCENTER';
 
 export interface IAppConfig {
   id: string;
@@ -84,7 +91,7 @@ export const APPS: IAppConfig[] = [
     id: 'DIALER',
     nameLocale: 'APPS_DIALER',
     backgroundColor: DIALER_APP_PRIMARY_COLOR,
-    icon: <DialerAppIcon />,
+    icon: <PhoneIcon />,
     color: DIALER_APP_TEXT_COLOR,
     path: '/phone',
     Route: () => <AppRoute id="DIALER" path="/phone" component={DialerApp} emitOnOpen={false} />,
@@ -220,19 +227,33 @@ export const APPS: IAppConfig[] = [
     path: '/camera',
     Route: () => <AppRoute id="CAMERA" path="/camera" component={CameraApp} emitOnOpen={false} />,
   },
+  {
+    id: 'CRYPTO',
+    nameLocale: 'APPS_CRYPTO',
+    icon: <CryptoIcon />,
+    backgroundColor: blue[500],
+    color: blue[50],
+    path: '/crypto',
+    Route: () => <AppRoute id="CRYPTO" path="/crypto" component={CryptoAppWrapper} emitOnOpen={false} />,
+  },
+  {
+    id: 'NEWS',
+    nameLocale: 'APPS_NEWS',
+    icon: <NewsIcon />,
+    backgroundColor: '#131313',
+    color: '#fff',
+    path: '/news',
+    Route: () => <AppRoute id="NEWS" path="/news" component={NewsAppWrapper} emitOnOpen={false} />,
+  },
+  {
+    id: 'CALLCENTER',
+    nameLocale: 'APPS_CALLCENTER',
+    icon: <CallCenterIcon />,
+    backgroundColor: '#131313',
+    color: '#fff',
+    path: '/callcenter',
+    Route: () => <AppRoute id="CALLCENTER" path="/callcenter" component={CallCenterAppWrapper} emitOnOpen={false} />,
+  },
 ];
 
 // Example app only in dev
-if (import.meta.env.DEV) {
-  APPS.push({
-    id: 'EXAMPLE',
-    nameLocale: 'APPS_EXAMPLE',
-    icon: <ExampleIcon />,
-    backgroundColor: blue[500],
-    color: blue[50],
-    path: '/example',
-    Route: () => (
-      <AppRoute id="EXAMPLE" path="/example" component={ExampleAppWrapper} emitOnOpen={false} />
-    ),
-  });
-}
