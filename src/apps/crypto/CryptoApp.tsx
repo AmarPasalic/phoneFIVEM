@@ -1,7 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import CryptoRow from './CryptoRow';
 const Blank = () => {
+  const history = useHistory();
   return (
     <div className="crypto-container">
       <style>{`
@@ -97,7 +98,7 @@ const Blank = () => {
 
       `}</style>
       <div className="crypto-title">
-        <h1>&lt;</h1>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
         <h2>Crypto</h2>
       </div>
       <div className="cryptoHeader">
@@ -113,13 +114,15 @@ const Blank = () => {
         </div>
       </div>
       <div className="cryptoContent">
-     <CryptoRow title='Forge' txtColor='#277e93' txt='{SSCRIPT}' main='0 SCRIPT' value='0' background='#1f2c39'/>
-     <CryptoRow title='Loaded' txtColor='white' txt='{SGG}' main='0 GG' value='0' background='#3b3a3d'/>
-     <CryptoRow title='Trojan' txtColor='#649b28' txt='{$TRJ}' main='0 TRJ' value='0' background='#1e2f1b'/>
+        <CryptoRow title='Forge' txtColor='#277e93' txt='{SSCRIPT}' main='0 SCRIPT' value='0' background='#1f2c39' />
+        <CryptoRow title='Loaded' txtColor='white' txt='{SGG}' main='0 GG' value='0' background='#3b3a3d' />
+        <CryptoRow title='Trojan' txtColor='#649b28' txt='{$TRJ}' main='0 TRJ' value='0' background='#1e2f1b' />
       </div>
     </div>
   );
 };
+
+export default Blank;
 
 export const CryptoApp: React.FC = () => {
   return (

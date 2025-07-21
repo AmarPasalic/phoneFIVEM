@@ -1,14 +1,16 @@
 import React from 'react';
 import { AppWrapper } from '@ui/components';
 import { AppContent } from '@ui/components/AppContent';
-import NewsApp from './NewsApp';
+import LaborApp from './LaborApp';
 
-export const NewsAppWrapper: React.FC = () => {
+const LaborAppWrapper: React.FC = () => {
   return (
     <AppWrapper>
       <AppContent>
-        <NewsApp />
+        <LaborApp />
       </AppContent>
     </AppWrapper>
   );
-}; 
+};
+
+export default LaborAppWrapper; 

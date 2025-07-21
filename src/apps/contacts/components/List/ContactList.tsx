@@ -32,7 +32,7 @@ export const ContactList: React.FC = () => {
       {/* Header section above search */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2 bg-black">
         <div className="flex items-center">
-          <span className="text-3xl font-light text-neutral-900 dark:text-neutral-100 mr-2">&#x2039;</span>
+          <span className="text-3xl font-light text-neutral-900 dark:text-neutral-100 mr-2" style={{cursor: 'pointer'}} onClick={() => history.push('/')}>{'<'}</span>
           <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Contact List</span>
         </div>
         <div className="flex items-center space-x-5">

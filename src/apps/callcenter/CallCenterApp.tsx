@@ -1,8 +1,10 @@
 import React from "react"
 import CallCenterRow from "./CallCenterRow";
 import news from "/media/newspaper-folded.png"
+import { useHistory } from 'react-router-dom';
 
 const Blank = () => {
+  const history = useHistory();
   return (
     <div className="callcenter-container">
       <style>{`
@@ -39,16 +41,16 @@ const Blank = () => {
 
       `}</style>
       <div className="callcenter-title">
-          <h1>&lt;</h1>
-          <h2>Call Center</h2>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
+        <h2>Call Center</h2>
       </div>
-      
+
       <div className="callcenter">
-      <CallCenterRow title="Jacks Used Cars" number="080-008"/>
-      <CallCenterRow title="Strokemasters" number="080-006"/>
-      <CallCenterRow title="Southside Pawn" number="080-013"/>
-      <CallCenterRow title="Premium Deluxe Motorsport" number="080-000"/>
-      <CallCenterRow title="Auzzie Angels" number="080-011"/>
+        <CallCenterRow title="Jacks Used Cars" number="080-008" />
+        <CallCenterRow title="Strokemasters" number="080-006" />
+        <CallCenterRow title="Southside Pawn" number="080-013" />
+        <CallCenterRow title="Premium Deluxe Motorsport" number="080-000" />
+        <CallCenterRow title="Auzzie Angels" number="080-011" />
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import NotesRow from './NotesRow';
+import { useHistory } from 'react-router-dom';
 const Blank = () => {
+  const history = useHistory();
   return (
     <div className="container1">
       <style>{`
@@ -25,28 +27,24 @@ const Blank = () => {
         h1,h2,h3,h4,h5,h6,p{
           color:white;
         }
-          .content{
+        .content{
           width:100%;
           display:flex;
           flex-direction:column;
-          }
-       
-     
+        }
       `}</style>
       <div className="title">
-        <h1>&lt;</h1>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
         <h2>Inbox</h2>
       </div>
       <div className="content">
-      <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5'/>
-      <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5'/>
-      <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5'/>
-      <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5'/>
+        <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5' />
+        <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5' />
+        <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5' />
+        <NotesRow mail='goverment@prodigy.rp' txt='Welcome to San Andreas' days='5' />
       </div>
     </div>
   );
 };
 
-export const NotesApp: React.FC = () => {
-  return <Blank />;
-};
+export default Blank;

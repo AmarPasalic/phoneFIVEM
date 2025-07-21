@@ -4,10 +4,10 @@ import { DialerApp } from '@apps/dialer/components/DialerApp';
 import { ContactsApp } from '@apps/contacts/components/ContactsApp';
 import { CalculatorApp } from '@apps/calculator/components/CalculatorApp';
 import { SettingsApp } from '@apps/settings/components/SettingsApp';
-import { MessagesApp } from '@apps/messages/components/MessagesApp';
+import MessagesApp from '@apps/messages/components/MessagesApp';
 import { ExampleAppWrapper } from '@apps/example/components/ExampleAppWrapper';
-import { MarketplaceApp } from '@apps/marketplace/components/MarketplaceApp';
-import { NotesApp } from '@apps/notes/NotesApp';
+import MarketplaceApp from '@apps/marketplace/components/MarketplaceApp';
+import NotesApp from '@apps/notes/NotesApp';
 import CameraApp from '@apps/camera/components/CameraApp';
 import { AppRoute } from '../components/AppRoute';
 
@@ -64,6 +64,8 @@ import { NewsAppWrapper } from '@apps/news/NewsAppWrapper';
 import NewsIcon from '../icons/material/app/NEWS';
 import { CallCenterAppWrapper } from '@apps/callcenter/CallCenterAppWrapper';
 import CallCenterIcon from '../icons/material/app/CALLCENTER';
+import BrowseAdsAppWrapper from '@apps/browseads/BrowseAdsAppWrapper';
+import LaborAppWrapper from '@apps/labor/LaborAppWrapper';
 
 export interface IAppConfig {
   id: string;
@@ -85,6 +87,26 @@ export type IApp = IAppConfig & {
   Icon?: React.FC<SvgIconProps>;
   theme?: any;
 };
+
+const BrowseAdsIcon: React.FC<{ className?: string; fontSize?: string | number }> = ({ className }) => (
+  <img
+    src="https://cdn.prodigyrp.net/phone/apps/adverts.webp"
+    alt="Browse Ads Icon"
+    className={className}
+    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+    draggable={false}
+  />
+);
+
+const LaborIcon: React.FC<{ className?: string; fontSize?: string | number }> = ({ className }) => (
+  <img
+    src="https://cdn.prodigyrp.net/phone/apps/labor.webp"
+    alt="Labor Icon"
+    className={className}
+    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+    draggable={false}
+  />
+);
 
 export const APPS: IAppConfig[] = [
   {
@@ -253,6 +275,24 @@ export const APPS: IAppConfig[] = [
     color: '#fff',
     path: '/callcenter',
     Route: () => <AppRoute id="CALLCENTER" path="/callcenter" component={CallCenterAppWrapper} emitOnOpen={false} />,
+  },
+  {
+    id: 'BROWSEADS',
+    nameLocale: 'APPS_BROWSEADS',
+    icon: <BrowseAdsIcon />, // Use the new component
+    backgroundColor: '#131313',
+    color: '#fff',
+    path: '/browseads',
+    Route: () => <AppRoute id="BROWSEADS" path="/browseads" component={BrowseAdsAppWrapper} emitOnOpen={false} />,
+  },
+  {
+    id: 'LABOR',
+    nameLocale: 'APPS_LABOR',
+    icon: <LaborIcon />, // Use the new component
+    backgroundColor: '#131313',
+    color: '#fff',
+    path: '/labor',
+    Route: () => <AppRoute id="LABOR" path="/labor" component={LaborAppWrapper} emitOnOpen={false} />,
   },
 ];
 

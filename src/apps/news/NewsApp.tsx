@@ -1,9 +1,9 @@
 import React from "react"
 import NewsRow from "./NewsRow";
+import { useHistory } from 'react-router-dom';
 
-
-
-const Blank = () => {
+const NewsApp: React.FC = () => {
+  const history = useHistory();
   return (
     <div className="news-container">
       <style>{`
@@ -95,7 +95,7 @@ const Blank = () => {
       `}</style>
       <div className="news-title">
         <div className="news-title-left">
-          <h1>&lt;</h1>
+          <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
           <h2>News</h2>
         </div>
         <div className="news-title-icons">
@@ -118,6 +118,4 @@ const Blank = () => {
   );
 };
 
-export const NewsApp: React.FC = () => {
-  return <Blank />;
-}; 
+export default NewsApp; 

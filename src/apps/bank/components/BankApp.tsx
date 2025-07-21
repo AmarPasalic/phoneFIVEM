@@ -1,8 +1,9 @@
 import { Banknote } from 'lucide-react';
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import BankRow from '../BankRow';
 const Blank = () => {
+    const history = useHistory();
     return (
         <div className="container1">
             <style>{`
@@ -137,7 +138,7 @@ const Blank = () => {
 
         `}</style>
             <div className="title">
-                <h1>&lt;</h1>
+                <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
                 <h2>Bank</h2>
             </div>
             <div className="header">

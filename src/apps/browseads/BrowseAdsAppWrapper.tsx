@@ -1,14 +1,16 @@
 import React from 'react';
 import { AppWrapper } from '@ui/components';
 import { AppContent } from '@ui/components/AppContent';
-import NewsApp from './NewsApp';
+import BrowseAdsApp from './BrowseAdsApp';
 
-export const NewsAppWrapper: React.FC = () => {
+const BrowseAdsAppWrapper: React.FC = () => {
   return (
     <AppWrapper>
       <AppContent>
-        <NewsApp />
+        <BrowseAdsApp />
       </AppContent>
     </AppWrapper>
   );
-}; 
+};
+
+export default BrowseAdsAppWrapper; 

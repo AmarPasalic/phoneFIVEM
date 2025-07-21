@@ -338,6 +338,7 @@
     "APPS_DARKCHAT": "IRC",
     "APPS_CRYPTO": "Crypto",
     "APPS_NEWS": "News",
+    "APPS_BROWSEADS": "Browse Ads",
     "GENERIC_CLICK_TO_REVEAL": "Click to reveal",
     "GENERIC_LOADING": "Loading...",
     "GENERIC_WAIT": "Please wait...",

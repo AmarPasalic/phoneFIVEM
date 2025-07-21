@@ -106,7 +106,6 @@ const Phone: React.FC<PhoneProps> = ({ notiRefCB }) => {
             <NotificationAlert />
             <PhoneSnackbar />
           </div>
-          <Navigation />
         </PhoneWrapper>
       </TopLevelErrorComponent>
     </div>

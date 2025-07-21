@@ -1,10 +1,11 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import MarketApp from "@apps/marketplace/components/MarketPlaceRow"
 import { Search } from "lucide-react";
-const MarketplacePlayground = () => {
-  return (
 
+const MarketplacePlayground = () => {
+  const history = useHistory();
+  return (
     <div className="container1">
       <style>
         {`
@@ -73,7 +74,7 @@ const MarketplacePlayground = () => {
         `}
       </style>
       <div className="title">
-        <h1>&lt;</h1>
+        <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
         <h1>App Store </h1>
       </div>
       <div className="search">
@@ -90,16 +91,15 @@ const MarketplacePlayground = () => {
         <MarketApp img='https://cdn.prodigyrp.net/phone/apps/comanager.webp' txt='Company Menager' isDownloaded />
       </div>
     </div>
-
-
-
   );
 };
 
-export const MarketplaceApp: React.FC = () => {
+const MarketplaceApp: React.FC = () => {
   return (
     <Switch>
       <Route path="/marketplace" exact component={MarketplacePlayground} />
     </Switch>
   );
 };
+
+export default MarketplaceApp;
