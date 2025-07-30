@@ -1,9 +1,9 @@
 import React from 'react'
-interface Props{
-  content:string,
-  time:string,
+interface Props {
+  content: string,
+  time: string,
 }
-const Message:React.FC<Props> = ({content, time}) => {
+const Message: React.FC<Props> = ({ content, time }) => {
   return (
     <div className="message-bubble">
       <style>{`

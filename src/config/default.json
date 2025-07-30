@@ -292,5 +292,20 @@
     "logLevel": 1,
     "shouldShowAtomDebug": false
   },
-  "SentryErrorMetrics": true
+  "SentryErrorMetrics": true,
+  "twitter": {
+    "showNotifications": true,
+    "generateProfileNameFromUsers": true,
+    "allowEditableProfileName": true,
+    "allowDeleteTweets": true,
+    "allowReportTweets": true,
+    "allowRetweet": true,
+    "characterLimit": 280,
+    "newLineLimit": 10,
+    "enableAvatars": true,
+    "enableEmojis": true,
+    "enableImages": true,
+    "maxImages": 4,
+    "resultsLimit": 50
+  }
 }

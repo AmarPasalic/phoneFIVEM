@@ -1,97 +1,83 @@
-import { memo, useState } from 'react';
-import { Route, useLocation } from 'react-router-dom';
-import { AppWrapper } from '@ui/components';
-import { AppContent } from '@ui/components/AppContent';
-import TweetListContainer from './tweet/TweetListContainer';
-import AddTweetModal from './AddTweetModal';
-import TweetButton from './buttons/TweetButton';
-import { LifeInvaderTitle } from './TwitterTitle';
-import BottomNavigation from './BottomNavigation';
-import TwitterProfile from './profile/Profile';
-import TwitterSearch from './TwitterSearch';
-
-import './twitter.css';
-import 'emoji-mart/css/emoji-mart.css';
-import { useProfile } from '../hooks/useProfile';
-import ProfilePrompt from './profile/ProfilePrompt';
-import { TwitterThemeProvider } from '../providers/TwitterThemeProvider';
-import { useSetRecoilState } from 'recoil';
-import { twitterState } from '../hooks/state';
-import ModalBackground from './ModalBackground';
-import { WordFilterProvider } from '@os/wordfilter/providers/WordFilterProvider';
-import InjectDebugData from '@os/debug/InjectDebugData';
-import { TwitterEvents } from '@typings/twitter';
-
-const TwitterApp = () => {
-  const setModalVisible = useSetRecoilState(twitterState.showCreateTweetModal);
-  const [activePage, setActivePage] = useState(0);
-  const { profile } = useProfile();
-  const location = useLocation();
-
-  // before any other action can be taken by the user we force
-  // them have a profile name.
-  const promptProfileName = !profile || !profile.profile_name || !profile.profile_name.trim();
-
-  const openModal = () => setModalVisible(true);
-  const handlePageChange = (_, page) => setActivePage(page);
-  const showTweetButton =
-    !promptProfileName && activePage === 0 && location.pathname === '/twitter';
-
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import plus from "/media/add.png"
+import messageIcon from "/media/no-talking.png"
+import userIcon from "/media/profile.png"
+import repost from "/media/refreshing.png"
+const TwitterApp: React.FC = () => {
+  const history = useHistory();
   return (
-    <TwitterThemeProvider>
-      <AppWrapper id="twitter-app">
-        <WordFilterProvider>
-          <AddTweetModal />
-        </WordFilterProvider>
-        <LifeInvaderTitle />
-        <AppContent>
-          {promptProfileName ? (
-            <ProfilePrompt />
-          ) : (
-            <>
-              <Route path="/twitter" exact component={TweetListContainer} />
-              <Route path="/twitter/search" component={TwitterSearch} />
-              <Route path="/twitter/profile" component={TwitterProfile} />
-            </>
-          )}
-        </AppContent>
-        {showTweetButton && <TweetButton openModal={openModal} />}
-        {!promptProfileName && (
-          <BottomNavigation activePage={activePage} handleChange={handlePageChange} />
-        )}
-      </AppWrapper>
-    </TwitterThemeProvider>
+    <div className="twitter-container">
+      <style>{`
+        .twitter-container {
+          background: #131313;
+          height: 88vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .twitter-title {
+          padding-left: 10px;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: 7vh;
+          background: #111111;
+          border-bottom: 1px solid #242444;
+        }
+        h1, h2, h3, h4, h5, h6, p {
+          color: #fff;
+        }
+        .twitter-search {
+          width: 90%;
+          margin: 24px auto 0 auto;
+          display: flex;
+          align-items: center;
+          height: 5vh;
+        }
+        .twitter-search input {
+          width: 90%;
+          height: 100%;
+          background: #28282a;
+          font-size: 14px;
+          padding: 10px;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          border: none;
+          color: white;
+        }
+        .twitter-search div {
+          width: 10%;
+          height: 100%;
+          background: #28282a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      `}</style>
+      <div className="twitter-title">
+        <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
+        <h2>L</h2>
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px', paddingRight: '16px' }}>
+          <img src={plus} alt="Plus" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
+          <img src={messageIcon} alt="Message" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
+          <img src={userIcon} alt="User" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
+        </div>
+      </div>
+      <div className="twitter-search" style={{ width: '90%', margin: '24px auto 0 auto', display: 'flex', alignItems: 'center', height: '5vh' }}>
+        <input type="search" placeholder="Search on L..." style={{ width: '90%', height: '100%', background: '#28282a', fontSize: 14, padding: 10, borderTopLeftRadius: 5, borderBottomLeftRadius: 5, border: 'none', color: 'white' }} />
+        <div style={{ width: '10%', height: '100%', background: '#28282a', display: 'flex', alignItems: 'center', justifyContent: 'center', borderTopRightRadius: 5, borderBottomRightRadius: 5 }}>
+          <SearchIcon style={{ color: 'white', fontSize: 20 }} />
+        </div>
+      </div>
+     
+    </div>
   );
 };
-export default memo(TwitterApp);
 
-InjectDebugData<any>(
-  [
-    {
-      app: 'TWITTER',
-      method: TwitterEvents.CREATE_TWEET_BROADCAST,
-      data: {
-        appId: 'TWITTER',
-        profile_id: 423443442,
-        profile_name: 'Chip',
-        isMine: false,
-        isLiked: false,
-        retweetId: '',
-        isRetweet: false,
-        seconds_since_tweet: 1639,
-        retweetProfileName: '',
-        retweetAvatarUrl: '',
-        isReported: false,
-        retweetIdentifier: '',
-        avatar_url: '',
-        id: 116,
-        message: 'Go is better! Here is why: Go is a statically typed, compiled language in the tradition of C, with memory safety, garbage collection, structural typing, and CSP-style concurrency. The compiler, tools, and source code are all free and open source.',
-        createdAt: '2021-12-01 00:42:03',
-        updatedAt: '2021-12-01 00:42:03',
-        identifier: '',
-        retweet: null,
-      },
-    },
-  ],
-  4000,
-);
+export default TwitterApp;
