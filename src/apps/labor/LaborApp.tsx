@@ -8,12 +8,11 @@ const LaborApp: React.FC = () => {
       <style>{`
         .labor-container {
           background: #131313;
-          height: 100%;
+          height: 88vh;
           width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          overflow: hidden;
         }
         .labor-title {
           padding-left: 10px;
@@ -40,6 +39,8 @@ const LaborApp: React.FC = () => {
         }
         .laborContent{
          width:90%;
+         height:90%;
+         overflow-y: auto;
          display:flex;
          flex-direction:column;
          align-items:center;

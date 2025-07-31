@@ -5,11 +5,7 @@ import BrowseAdsApp from './BrowseAdsApp';
 
 const BrowseAdsAppWrapper: React.FC = () => {
   return (
-    <AppWrapper>
-      <AppContent>
         <BrowseAdsApp />
-      </AppContent>
-    </AppWrapper>
   );
 };
 

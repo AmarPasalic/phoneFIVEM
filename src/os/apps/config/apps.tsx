@@ -2,13 +2,11 @@ import React from 'react';
 import { blue, common, grey, purple } from '@mui/material/colors';
 import { DialerApp } from '@apps/dialer/components/DialerApp';
 import { ContactsApp } from '@apps/contacts/components/ContactsApp';
-import { CalculatorApp } from '@apps/calculator/components/CalculatorApp';
 import { SettingsApp } from '@apps/settings/components/SettingsApp';
 import MessagesApp from '@apps/messages/components/MessagesApp';
 import { ExampleAppWrapper } from '@apps/example/components/ExampleAppWrapper';
 import MarketplaceApp from '@apps/marketplace/components/MarketplaceApp';
 import NotesApp from '@apps/notes/NotesApp';
-import CameraApp from '@apps/camera/components/CameraApp';
 import { AppRoute } from '../components/AppRoute';
 
 import {
@@ -48,13 +46,10 @@ import BrowserIcon from '../icons/material/app/BROWSER';
 import MessagesIcon from '../icons/material/app/MESSAGES';
 import DarkchatIcon from '../icons/material/app/DARKCHAT';
 import ContactIcon from '../icons/material/app/CONTACTS';
-import Calculator from '../icons/material/app/CALCULATOR';
 import SettingsIcon from '../icons/material/app/SETTINGS';
-import MatchIcon from '../icons/material/app/MATCH';
 import TwitterIcon from '../icons/material/app/TWITTER';
 import MarketplaceIcon from '../icons/material/app/MARKETPLACE';
 import NotesIcon from '../icons/material/app/NOTES';
-import Camera from '../icons/material/app/CAMERA';
 import ExampleIcon from '../icons/material/app/EXAMPLE';
 import { BankApp } from '@apps/bank/components/BankApp';
 import BankIcon from '../icons/material/app/BANK';
@@ -141,17 +136,6 @@ export const APPS: IAppConfig[] = [
     ),
   },
   {
-    id: 'DARKCHAT',
-    nameLocale: 'APPS_DARKCHAT',
-    icon: <DarkchatIcon />,
-    backgroundColor: DARKCHAT_APP_PRIMARY_COLOR,
-    color: DARKCHAT_APP_TEXT_COLOR,
-    path: '/darkchat',
-    Route: () => (
-      <AppRoute id="DARKCHAT" path="/darkchat" component={DarkChatApp} emitOnOpen={false} />
-    ),
-  },
-  {
     id: 'CONTACTS',
     nameLocale: 'APPS_CONTACTS',
     backgroundColor: CONTACTS_APP_PRIMARY_COLOR,
@@ -160,28 +144,6 @@ export const APPS: IAppConfig[] = [
     path: '/contacts',
     Route: () => (
       <AppRoute id="CONTACTS" path="/contacts" component={ContactsApp} emitOnOpen={false} />
-    ),
-  },
-  {
-    id: 'CALCULATOR',
-    nameLocale: 'APPS_CALCULATOR',
-    icon: <Calculator />,
-    backgroundColor: purple[500],
-    color: grey[50],
-    path: '/calculator',
-    Route: () => (
-      <AppRoute id="CALCULATOR" path="/calculator" component={CalculatorApp} emitOnOpen={false} />
-    ),
-  },
-  {
-    id: 'BANK',
-    nameLocale: 'APPS_BANK',
-    icon: <BankIcon />,
-    backgroundColor: '#2b3465',
-    color: '#fff',
-    path: '/bank',
-    Route: () => (
-      <AppRoute id="BANK" path="/bank" component={BankApp} emitOnOpen={false} />
     ),
   },
   {
@@ -194,15 +156,6 @@ export const APPS: IAppConfig[] = [
     Route: () => (
       <AppRoute id="SETTINGS" path="/settings" component={SettingsApp} emitOnOpen={false} />
     ),
-  },
-  {
-    id: 'MATCH',
-    nameLocale: 'APPS_MATCH',
-    icon: <MatchIcon />,
-    backgroundColor: MATCH_APP_PRIMARY_COLOR,
-    color: MATCH_APP_TEXT_COLOR,
-    path: '/match',
-    Route: () => <AppRoute id="MATCH" path="/match" component={MatchApp} emitOnOpen={false} />,
   },
   {
     id: 'TWITTER',
@@ -239,15 +192,6 @@ export const APPS: IAppConfig[] = [
     color: NOTES_APP_ICON_COLOR,
     path: '/notes',
     Route: () => <AppRoute id="NOTES" path="/notes" component={NotesApp} emitOnOpen={false} />,
-  },
-  {
-    id: 'CAMERA',
-    nameLocale: 'APPS_CAMERA',
-    icon: <Camera />,
-    backgroundColor: grey['A400'],
-    color: common.white,
-    path: '/camera',
-    Route: () => <AppRoute id="CAMERA" path="/camera" component={CameraApp} emitOnOpen={false} />,
   },
   {
     id: 'CRYPTO',

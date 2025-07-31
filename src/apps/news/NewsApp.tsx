@@ -9,7 +9,7 @@ const NewsApp: React.FC = () => {
       <style>{`
         .news-container {
           background: #131313;
-          height: 100%;
+          height: 88vh;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -77,6 +77,8 @@ const NewsApp: React.FC = () => {
 
           .news{
           width:92%;
+          height: 100%;
+          padding-bottom:20px;
           display:flex;
           gap:20px;
           flex-direction:column;

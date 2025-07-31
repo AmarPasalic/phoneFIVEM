@@ -5,10 +5,7 @@ import { CallCenterApp } from './CallCenterApp';
 
 export const CallCenterAppWrapper: React.FC = () => {
   return (
-    <AppWrapper>
-      <AppContent>
+
         <CallCenterApp />
-      </AppContent>
-    </AppWrapper>
   );
 }; 

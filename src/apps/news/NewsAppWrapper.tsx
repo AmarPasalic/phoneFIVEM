@@ -5,10 +5,8 @@ import NewsApp from './NewsApp';
 
 export const NewsAppWrapper: React.FC = () => {
   return (
-    <AppWrapper>
-      <AppContent>
+    
         <NewsApp />
-      </AppContent>
-    </AppWrapper>
+     
   );
 }; 

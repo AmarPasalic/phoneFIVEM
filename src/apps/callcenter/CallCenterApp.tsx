@@ -10,12 +10,12 @@ const Blank = () => {
       <style>{`
         .callcenter-container {
           background: #131313;
-          height: 100%;
+          min-height:88vh;
           width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
-          overflow: hidden;
+        
         }
           h1,h2,h3,h4,h5,h6,p{
           color:white;
@@ -33,6 +33,8 @@ const Blank = () => {
         }
           .callcenter{
           width:90%;
+          height: 100%;
+          overflow-y: auto;
           display:flex;
           flex-direction:column;
           align-items:center;

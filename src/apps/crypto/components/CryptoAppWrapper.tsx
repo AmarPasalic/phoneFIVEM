@@ -9,13 +9,10 @@ import { CryptoApp } from '../CryptoApp';
 export const CryptoAppWrapper: React.FC = () => {
   const crypto = useApp('CRYPTO');
   return (
-    <CryptoThemeProvider>
-      <AppWrapper>
-        {/* <AppTitle app={crypto} /> */}
-        <AppContent>
-          <CryptoApp />
-        </AppContent>
-      </AppWrapper>
-    </CryptoThemeProvider>
+   
+
+     
+       <CryptoApp />
+    
   );
 }; 

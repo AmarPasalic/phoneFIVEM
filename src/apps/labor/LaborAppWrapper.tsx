@@ -5,11 +5,9 @@ import LaborApp from './LaborApp';
 
 const LaborAppWrapper: React.FC = () => {
   return (
-    <AppWrapper>
-      <AppContent>
+   
         <LaborApp />
-      </AppContent>
-    </AppWrapper>
+    
   );
 };
 

@@ -8,11 +8,12 @@ const Blank = () => {
       <style>{`
         .crypto-container {
           background: #131313;
-          height: 100%;
+          height: 88vh !important;
           width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
+          overflow-y: hidden;
         }
         .crypto-title {
           padding-left: 10px;
@@ -78,23 +79,22 @@ const Blank = () => {
 
         .cryptoContent{
         width:90%;
+        height:80%;
         padding-top:20px;
+        padding-bottom:20px;
         gap:20px;
         display:flex;
         flex-direction:column;
         align-items:center;
         flex: 1 0 auto;
-        overflow-y: auto;
+        overflow-y: scroll;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none;  /* IE and Edge */
         }
         .cryptoContent::-webkit-scrollbar {
           display: none;
         }
-        /* Prevent children from shrinking */
-        .cryptoContent > * {
-          flex-shrink: 0;
-        }
+     
 
       `}</style>
       <div className="crypto-title">

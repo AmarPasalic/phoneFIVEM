@@ -8,7 +8,7 @@ const Blank = () => {
       <style>{`
         .container1 {
           background: #010101;
-          height:100%;
+          height:88vh;
           width:100%;
           display:flex;
           flex-direction:column;
@@ -39,6 +39,7 @@ const Blank = () => {
         }
        .content{
        width:90%;
+       height:100%;
        display:flex;
        flex-direction:column;
        align-items:center;

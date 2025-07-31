@@ -10,7 +10,7 @@ const SettingsPlayground = () => {
         {`
           .container1 {
             background: #222220;
-            height:100%;
+            height:88vh;
             width:100%;
             display:flex;
             flex-direction:column;

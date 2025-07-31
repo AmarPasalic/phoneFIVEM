@@ -13,7 +13,7 @@ const BrowseAdsApp: React.FC = () => {
       <style>{`
         .browseads-container {
           background: #131313;
-          height: 100%;
+          height: 88vh;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -85,6 +85,8 @@ const BrowseAdsApp: React.FC = () => {
           }
           .ads{
           padding-top:20px;
+          padding-bottom:20px;
+          height: 100%;
           width:90%;
           displaf:flex;
           flex-direction:column;

@@ -52,7 +52,7 @@ export const DialerHistory: React.FC = () => {
   }
 
   return (
-    <div className="relative bg-neutral-700 min-h-full w-full">
+    <div className="relative bg-neutral-700 min-h-[88vh] w-full">
       {/* Header section above call history */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2 bg-black">
         <div className="flex items-center">

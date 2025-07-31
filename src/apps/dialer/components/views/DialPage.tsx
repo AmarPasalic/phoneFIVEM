@@ -9,7 +9,7 @@ import { useQueryParams } from '@common/hooks/useQueryParams';
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: '100%',
-    minHeight: '100%',
+    minHeight: '88vh',
     display: 'flex',
     flexDirection: 'column',
   },

@@ -5,6 +5,7 @@ import plus from "/media/add.png"
 import messageIcon from "/media/no-talking.png"
 import userIcon from "/media/profile.png"
 import repost from "/media/refreshing.png"
+import TwitterRow from './TwitterRow';
 const TwitterApp: React.FC = () => {
   const history = useHistory();
   return (
@@ -59,13 +60,26 @@ const TwitterApp: React.FC = () => {
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
         }
+          .twitterContent{
+          width:90%;
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 20px;
+          overflow-y: scroll;
+          height: 100%;
+          scrollbar-width: none; /* Firefox */
+        }
+        .twitterContent::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
       `}</style>
       <div className="twitter-title">
         <h1 style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</h1>
         <h2>L</h2>
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px', paddingRight: '16px' }}>
-          <img src={plus} alt="Plus" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '18px', paddingRight: '16px' }}>
           <img src={messageIcon} alt="Message" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
+          <img src={plus} alt="Plus" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
           <img src={userIcon} alt="User" style={{ width: 20, height: 20, filter: 'invert(1)' }} />
         </div>
       </div>
@@ -75,7 +89,10 @@ const TwitterApp: React.FC = () => {
           <SearchIcon style={{ color: 'white', fontSize: 20 }} />
         </div>
       </div>
-     
+      <div className="twitterContent">
+        <TwitterRow userName='@TripleT' time='a few seconds ago' txt='Orale Homes' />
+        <TwitterRow userName='@NickHead' time='2 minutes ago' txt='Hungrry?, Thirsty, come to burgershot?' />
+      </div>
     </div>
   );
 };
