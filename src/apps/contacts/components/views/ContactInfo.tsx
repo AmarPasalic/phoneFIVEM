@@ -33,7 +33,7 @@ interface ContactInfoRouteQuery {
 
 const useStyles = makeStyles({
   root: {
-    height: '100%',
+    height: '88vh',
     width: '100%',
   },
   listContainer: {

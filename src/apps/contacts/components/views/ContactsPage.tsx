@@ -3,8 +3,9 @@ import { ContactList } from '../List/ContactList';
 
 export const ContactPage: React.FC = () => {
   return (
-    <div className="">
+    <div >
       <ContactList />
     </div>
+    
   );
 };

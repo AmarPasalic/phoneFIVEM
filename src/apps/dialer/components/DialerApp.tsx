@@ -13,7 +13,6 @@ import InjectDebugData from "@os/debug/InjectDebugData";
 export const DialerApp: React.FC = () => {
   return (
     <DialerThemeProvider>
-      <AppWrapper>
         <AppContent>
           <Switch>
             <Route path="/phone/dial">
@@ -30,7 +29,6 @@ export const DialerApp: React.FC = () => {
           </Switch>
         </AppContent>
         <DialerNavBar />
-      </AppWrapper>
     </DialerThemeProvider>
   );
 };
