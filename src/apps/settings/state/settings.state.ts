@@ -4,52 +4,45 @@ import config from '../../../config/default.json';
 import fetchNui from '@utils/fetchNui';
 import { isSchemaValid } from '../utils/schema';
 import { NPWD_STORAGE_KEY } from '../utils/constants';
-import { getDefaultLanguage } from '@utils/language';
 
-const getDefaultPhoneSettings = async () => {
-  return { ...config.defaultSettings, language: await getDefaultLanguage() };
+const getInitialState = (): IPhoneSettings => {
+  const savedSettings = localStorage.getItem(NPWD_STORAGE_KEY);
+  if (!savedSettings) {
+    return config.defaultSettings;
+  }
+
+  try {
+    const validString = isSchemaValid(savedSettings);
+    if (validString) {
+      return JSON.parse(savedSettings);
+    }
+    console.error('Settings Schema was invalid, applying default settings');
+    return config.defaultSettings;
+  } catch (e) {
+    console.error('Failed to parse settings:', e);
+    return config.defaultSettings;
+  }
 };
 
-const localStorageEffect: AtomEffect<IPhoneSettings> = ({ setSelf, onSet }) => {
-  const key = NPWD_STORAGE_KEY;
-  const savedVal = localStorage.getItem(key);
-
-  if (!savedVal) setSelf(new DefaultValue());
-
-  const getConfig = async (): Promise<IPhoneSettings> => {
-    const defaultConfig = await getDefaultPhoneSettings();
-
-    try {
-      const validString = isSchemaValid(savedVal);
-      const settings: IPhoneSettings = validString ? JSON.parse(savedVal) : defaultConfig;
-
-      if (!validString) {
-        console.error('Settings Schema was invalid, applying default settings');
-      }
-
-      // Triggered on init
-      fetchNui(SettingEvents.NUI_SETTINGS_UPDATED, settings, {}).catch();
-      return settings;
-    } catch (e) {
-      return defaultConfig;
-    }
-  };
-
-  setSelf(getConfig());
+const localStorageEffect: AtomEffect<IPhoneSettings> = ({ setSelf, onSet, trigger }) => {
+  if (trigger === 'get') {
+    setSelf(getInitialState());
+  }
 
   onSet((newValue) => {
-    // Triggered on set event
-    fetchNui(SettingEvents.NUI_SETTINGS_UPDATED, newValue, {}).catch();
     if (newValue instanceof DefaultValue) {
-      localStorage.removeItem(key);
+      localStorage.removeItem(NPWD_STORAGE_KEY);
     } else {
-      localStorage.setItem(key, JSON.stringify(newValue));
+      localStorage.setItem(NPWD_STORAGE_KEY, JSON.stringify(newValue));
+      fetchNui(SettingEvents.NUI_SETTINGS_UPDATED, newValue, {}).catch((e) => {
+        console.error('Failed to update NUI settings:', e);
+      });
     }
   });
 };
 
 export const settingsState = atom<IPhoneSettings>({
   key: 'settings',
-  default: getDefaultPhoneSettings(),
+  default: config.defaultSettings,
   effects: [localStorageEffect],
 });

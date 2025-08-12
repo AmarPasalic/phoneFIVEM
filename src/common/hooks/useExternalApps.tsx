@@ -72,8 +72,20 @@ const useExternalAppsAction = () => {
         );
       };
 
-      config.icon = React.createElement(config.icon);
-      config.NotificationIcon = config.notificationIcon;
+
+      // Support both React components and public asset URLs for icons
+      if (typeof config.icon === 'string') {
+        // If icon is a string (likely a public asset path), use as <img src="..." />
+        config.icon = <img src={config.icon.startsWith('/media/') ? config.icon : `/media/${config.icon}`} alt={appName + ' icon'} style={{ width: 24, height: 24 }} />;
+      } else {
+        config.icon = React.createElement(config.icon);
+      }
+
+      if (typeof config.notificationIcon === 'string') {
+        config.NotificationIcon = <img src={config.notificationIcon.startsWith('/media/') ? config.notificationIcon : `/media/${config.notificationIcon}`} alt={appName + ' notification icon'} style={{ width: 24, height: 24 }} />;
+      } else {
+        config.NotificationIcon = config.notificationIcon;
+      }
 
       console.debug(`Successfully loaded external app "${appName}"`);
       return config;
@@ -93,8 +105,10 @@ const useExternalAppsAction = () => {
         return existingApps.find((app) => app.id === appName);
       };
 
+
+      const safeExternalApps = Array.isArray(externalApps) ? externalApps : [];
       const configs = await Promise.all(
-        externalApps.map(async (appName) => {
+        safeExternalApps.map(async (appName) => {
           return appAlreadyLoaded(appName) ?? await generateAppConfig(appName);
         }),
       );
@@ -114,8 +128,15 @@ export const useExternalApps = () => {
   const { getConfigs } = useExternalAppsAction();
   const config = useRecoilValue(phoneState.resourceConfig);
 
+
   useEffect(() => {
-    getConfigs(config?.apps, apps).then(setApps);
+    console.log('useExternalApps: config =', config);
+    console.log('useExternalApps: config?.apps =', config?.apps);
+    console.log('useExternalApps: current extApps state =', apps);
+    getConfigs(config?.apps, apps).then((result) => {
+      console.log('useExternalApps: getConfigs result =', result);
+      setApps(result);
+    });
   }, [config, setApps, getConfigs]);
 
   return apps.filter((app) => app);

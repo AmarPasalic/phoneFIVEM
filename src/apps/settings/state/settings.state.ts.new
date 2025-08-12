@@ -1,0 +1,44 @@
+import { atom, AtomEffect, DefaultValue } from 'recoil';
+import { IPhoneSettings, SettingEvents } from '@typings/settings';
+import config from '../../../config/default.json';
+import fetchNui from '@utils/fetchNui';
+import { isSchemaValid } from '../utils/schema';
+import { NPWD_STORAGE_KEY } from '../utils/constants';
+import { getDefaultLanguage } from '@utils/language';
+
+const localStorageEffect: AtomEffect<IPhoneSettings> = ({ setSelf, onSet }) => {
+  const key = NPWD_STORAGE_KEY;
+  const savedVal = localStorage.getItem(key);
+
+  if (savedVal) {
+    try {
+      const validString = isSchemaValid(savedVal);
+      if (validString) {
+        const settings = JSON.parse(savedVal);
+        setSelf(settings);
+        fetchNui(SettingEvents.NUI_SETTINGS_UPDATED, settings, {}).catch();
+      } else {
+        console.error('Settings Schema was invalid, applying default settings');
+        setSelf(config.defaultSettings);
+      }
+    } catch (e) {
+      console.error('Failed to parse settings:', e);
+      setSelf(config.defaultSettings);
+    }
+  }
+
+  onSet((newValue) => {
+    if (newValue instanceof DefaultValue) {
+      localStorage.removeItem(key);
+    } else {
+      localStorage.setItem(key, JSON.stringify(newValue));
+      fetchNui(SettingEvents.NUI_SETTINGS_UPDATED, newValue, {}).catch();
+    }
+  });
+};
+
+export const settingsState = atom<IPhoneSettings>({
+  key: 'settings',
+  default: config.defaultSettings,
+  effects: [localStorageEffect],
+});

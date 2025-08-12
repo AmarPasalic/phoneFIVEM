@@ -8,9 +8,9 @@ const settingOptionSchema: Schema = {
   type: 'object',
   properties: {
     label: { type: 'string' },
-    val: { type: 'string' },
+    value: { type: ['string', 'number', 'object'] },
   },
-  required: true,
+  required: ['label', 'value'],
 };
 
 const iconSetValueSchema: Schema = {
@@ -20,7 +20,7 @@ const iconSetValueSchema: Schema = {
     name: { type: 'string' },
     custom: { type: 'boolean' },
   },
-  required: true,
+  required: ['name', 'custom'],
 };
 
 const settingOptionIconSet: Schema = {
@@ -30,7 +30,7 @@ const settingOptionIconSet: Schema = {
     label: { type: 'string' },
     value: { $ref: '/IconSetValue' },
   },
-  required: true,
+  required: ['label', 'value'],
 };
 
 v.addSchema(iconSetValueSchema, '/IconSetValue');
@@ -39,22 +39,43 @@ v.addSchema(settingOptionIconSet, '/SettingOptionIconSet');
 const settingsSchema: Schema = {
   type: 'object',
   properties: {
-    callVolume: { type: 'number', required: true },
-    iconSet: { $ref: '/SettingOptionIconSet', required: true },
-    language: { $ref: '/SettingOption', required: true },
-    wallpaper: { $ref: '/SettingOption', required: true },
-    frame: { $ref: '/SettingOption', required: true },
-    theme: { $ref: '/SettingOption', required: true },
-    zoom: { $ref: '/SettingOption', required: true },
-    streamerMode: { type: 'boolean', required: true },
-    ringtone: { $ref: '/SettingOption', required: true },
-    notiSound: { $ref: '/SettingOption', required: true },
-    TWITTER_notiFilter: { $ref: '/SettingOption', required: true },
-    TWITTER_notiSound: { $ref: '/SettingOption', required: true },
-    TWITTER_notiSoundVol: { type: 'number', required: true },
-    TWITTER_notifyNewFeedTweet: { type: 'boolean', required: true },
-    MARKETPLACE_notifyNewListing: { type: 'boolean', required: true },
+    callVolume: { type: 'number' },
+    iconSet: { $ref: '/SettingOptionIconSet' },
+    language: { $ref: '/SettingOption' },
+    wallpaper: { $ref: '/SettingOption' },
+    frame: { $ref: '/SettingOption' },
+    theme: { $ref: '/SettingOption' },
+    zoom: { $ref: '/SettingOption' },
+    streamerMode: { type: 'boolean' },
+    anonymousMode: { type: 'boolean' },
+    customWallpaper: { type: 'string' },
+    ringtone: { $ref: '/SettingOption' },
+    notiSound: { $ref: '/SettingOption' },
+    TWITTER_notiFilter: { $ref: '/SettingOption' },
+    TWITTER_notiSound: { $ref: '/SettingOption' },
+    TWITTER_notiSoundVol: { type: 'number' },
+    TWITTER_notifyNewFeedTweet: { type: 'boolean' },
+    MARKETPLACE_notifyNewListing: { type: 'boolean' }
   },
+  required: [
+    'callVolume',
+    'iconSet',
+    'language',
+    'wallpaper',
+    'frame',
+    'theme',
+    'zoom',
+    'streamerMode',
+    'anonymousMode',
+    'customWallpaper',
+    'ringtone',
+    'notiSound',
+    'TWITTER_notiFilter',
+    'TWITTER_notiSound',
+    'TWITTER_notiSoundVol',
+    'TWITTER_notifyNewFeedTweet',
+    'MARKETPLACE_notifyNewListing'
+  ]
 };
 
 v.addSchema(settingOptionSchema, '/SettingOption');
