@@ -56,7 +56,7 @@ export const DialerHistory: React.FC = () => {
       {/* Header section above call history */}
       <div className="flex items-center justify-between px-4 pt-4 pb-2 bg-black">
         <div className="flex items-center">
-          <span className="text-3xl font-light text-neutral-900 dark:text-neutral-100 mr-2" style={{cursor: 'pointer'}} onClick={() => history.push('/')}>{'<'}</span>
+          <span className="text-3xl font-light text-neutral-900 dark:text-neutral-100 mr-2" style={{ cursor: 'pointer' }} onClick={() => history.push('/')}>{'<'}</span>
           <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">Call History</span>
         </div>
         <div className="flex items-center space-x-5">
@@ -75,14 +75,15 @@ export const DialerHistory: React.FC = () => {
             const contactNumber = isOutgoing ? call.receiver : call.transmitter;
             const displayName = call.isAnonymous ? 'Anonymous' : getDisplay(contactNumber);
             const avatar = null; // Optionally fetch avatar if available
-            const timeAgo = dayjs().to(dayjs.unix(parseInt(call.start)));
+            const timeAgo = dayjs().to(dayjs(parseInt(call.start) * 1000));
 
             return (
               <div
                 key={call.id}
                 className={
-                  `flex items-center justify-between w-full rounded-none px-4 py-3 transition bg-neutral-800 border-b border-neutral-600 shadow-none`
+                  `flex items-center justify-between w-full rounded-none px-4 py-3 transition bg-neutral-800 border-b border-neutral-600 shadow-none cursor-pointer hover:bg-neutral-700`
                 }
+                onClick={() => handleCall(contactNumber)}
               >
                 {/* Avatar/Initial and info */}
                 <div className="flex items-center space-x-3 min-w-0">

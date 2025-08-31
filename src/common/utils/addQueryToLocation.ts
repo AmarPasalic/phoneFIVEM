@@ -11,9 +11,15 @@ export const addQueryToLocation = (
   key = '',
   value = '',
 ) => {
-  const { query } = parsePath(pathname + search);
-  return `${pathname}?${qs.stringify({
-    ...query,
-    [key]: value,
-  })}`;
+  try {
+    const { query } = parsePath(pathname + search);
+    return `${pathname}?${qs.stringify({
+      ...query,
+      [key]: value,
+    })}`;
+  } catch (error) {
+    console.warn('Failed to parse URL for adding query:', pathname + search, error);
+    // Return a simple fallback
+    return `${pathname}?${key}=${value}`;
+  }
 };

@@ -67,8 +67,15 @@ customElements.define(
 			e.preventDefault()
 			if (document.activeElement.form.method === 'post')
 				frameElement.load(document.activeElement.form.action, {method: 'post', body: new FormData(document.activeElement.form)})
-			else
-				frameElement.load(document.activeElement.form.action + '?' + new URLSearchParams(new FormData(document.activeElement.form)))
+			else {
+				try {
+					frameElement.load(document.activeElement.form.action + '?' + new URLSearchParams(new FormData(document.activeElement.form)))
+				} catch (error) {
+					console.warn('Failed to construct URLSearchParams:', error);
+					// Fallback to simple form submission
+					frameElement.load(document.activeElement.form.action)
+				}
+			}
 		}
 	})
 	</script>`,

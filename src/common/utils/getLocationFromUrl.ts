@@ -6,7 +6,13 @@ interface GetLocationFromUrlValue {
 }
 
 export const getLocationFromUrl = (url: string): GetLocationFromUrlValue => {
-  const { href, search } = parsePath(url);
-  const searchStr = '?' + (search || '');
-  return { pathname: href, search: searchStr };
+  try {
+    const { href, search } = parsePath(url);
+    const searchStr = '?' + (search || '');
+    return { pathname: href, search: searchStr };
+  } catch (error) {
+    console.warn('Failed to parse URL:', url, error);
+    // Return safe fallback values
+    return { pathname: url || '/', search: '' };
+  }
 };

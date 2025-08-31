@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { setClipboard } from "@os/phone/hooks";
 import { useSnackbar } from '@os/snackbar/hooks/useSnackbar';
 import fetchNui from "@utils/fetchNui";
-import { Contact } from '@typings/contact';
+import { Contact, ContactEvents } from '../../../../../typings/contact';
 
 
 export const ContactList: React.FC = () => {
@@ -53,9 +53,9 @@ export const ContactList: React.FC = () => {
 
       <div className="overflow-y-auto w-full bg-neutral-700">
         <nav className="overflow-y-auto" aria-label="Directory">
-          <List className="rounded-none bg-neutral-700 p-0 m-0">
+          <List>
             {(filteredContacts as Contact[]).map((contact: Contact) => (
-              <ListItem key={contact.id} className="rounded-none p-0 m-0">
+              <ListItem key={contact.id}>
                 <ContactItem {...contact} />
               </ListItem>
             ))}
@@ -174,7 +174,8 @@ const ContactItem = ({ number, avatar, id, display }: ContactItemProps) => {
   return (
     <div
       style={{ borderRadius: 0 }}
-      className="flex items-center justify-between w-full rounded-none px-4 py-3 transition bg-neutral-800 border-b border-neutral-600 shadow-none"
+      className="flex items-center justify-between w-full rounded-none px-4 py-3 transition bg-neutral-800 border-b border-neutral-600 shadow-none cursor-pointer hover:bg-neutral-700"
+      onClick={() => history.push(`/contacts/${id}`)}
     >
       {/* Avatar/Initial */}
       <div className="flex items-center space-x-3 min-w-0">
@@ -190,8 +191,22 @@ const ContactItem = ({ number, avatar, id, display }: ContactItemProps) => {
           <div className="text-xs truncate text-neutral-400">{number}</div>
         </div>
       </div>
-      {/* Only star icon remains */}
+      {/* Action buttons */}
       <div className="flex items-center space-x-2 min-w-fit">
+        <button
+          onClick={startCall}
+          className="p-2 text-neutral-400 hover:text-green-400 transition-colors"
+          title="Call"
+        >
+          <Phone size={16} />
+        </button>
+        <button
+          onClick={handleMessage}
+          className="p-2 text-neutral-400 hover:text-blue-400 transition-colors"
+          title="Message"
+        >
+          <MessageSquare size={16} />
+        </button>
         {/* Star icon placeholder, can be replaced with logic for favorites */}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-neutral-500 ml-2 opacity-60 relative -top-1">
           <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.484.039.682.663.294.98l-4.204 3.404a.563.563 0 00-.192.618l1.285 5.385c.112.47-.39.84-.797.593l-4.646-2.885a.563.563 0 00-.586 0l-4.646 2.885c-.407.247-.909-.123-.797-.593l1.285-5.385a.563.563 0 00-.192-.618L2.068 10.377c-.388-.317-.19-.94.294-.98l5.518-.442a.563.563 0 00.475-.345l2.125-5.111z" />
